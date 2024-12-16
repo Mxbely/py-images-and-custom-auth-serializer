@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 import pathlib
 import uuid
+import os
 from django.utils.text import slugify
 
 
@@ -43,7 +44,7 @@ def movie_image_file_path(instance, filename):
         f"{slugify(instance.title)}-{uuid.uuid4()}"
         + pathlib.Path(filename).suffix
     )
-    return pathlib.Path("upload/movies/") / pathlib.Path(filename)
+    return os.path.join("upload/movies/", filename)
 
 
 class Movie(models.Model):
